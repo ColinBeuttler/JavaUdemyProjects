@@ -40,8 +40,13 @@ public class TicTacToe {
       if (count == 3) {
         System.out.println("Player X wins");
         break;
-      } else if (count == -3) {
+      } 
+      else if (count == -3) {
         System.out.println("Player O wins");
+        break;
+      }
+      else if (i == 8) {
+        System.out.print("It's a Tie!!");
         break;
       }
 
@@ -71,6 +76,7 @@ public class TicTacToe {
     */
 
     scan.close();
+  
   }
 
   /** Task 2 - Write a function that prints the board.
@@ -144,10 +150,8 @@ public class TicTacToe {
       for (int j = 0; j < board[i].length; j++) {
         if (board[i][j] == 'X') {
           count++;
-          System.out.print(count + "\n");
         } else if (board[i][j] == 'O') {
           count--;
-          System.out.print(count + "\n");
         }
       }
       if (count == 3 || count == -3) {
@@ -156,20 +160,22 @@ public class TicTacToe {
       } else {
         count = 0;
       }
+    }
 
-      for (int k = 0; k < board[i].length; k++) {
-        if (board[k][i] == 'X') {
+    for (int i = 0; i < board.length; i++) {
+      for (int j = 0; j < board[i].length; j++) {
+        if (board[j][i] == 'X') {
           count++;
-        } else if (board[k][i] == 'O') {
+        } else if (board[j][i] == 'O') {
           count--;
         }
       }
       if (count == 3 || count == -3) {
+
         return count;
       } else {
         count = 0;
       }
-
     }
 
     for (int n = 0; n < board.length; n++) {
@@ -195,10 +201,11 @@ public class TicTacToe {
         }
 
       }
-       if (count == 3 || count == -3) {
-          return count;
-        }
+      if (count == 3 || count == -3) {
+        return count;
+      }
     }
     return count;
   }
 }
+
