@@ -1,5 +1,6 @@
 package src.main.models;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Cart {
@@ -17,9 +18,52 @@ public class Cart {
         this.items.set(index, new Item(item));
     }
 
+    public boolean add(Item item) {
+        if (this.items.contains(item)) {
+            return false;
+        }
+        this.items.add(new Item(item));
+        return true;
+    }
 
+    public void remove(String name) {
+        if (this.items.isEmpty()) {
+            throw new IllegalStateException();
+        }
+        items.removeIf((item) -> item.getName().equals(name));
+       
+    }
 
+    public boolean contains(Item item) {
+        return this.items.contains(item);
+    }
 
+    public double getSubtotal() {
+        return this.items.stream().mapToDouble((item) ->  item.getPrice()).sum();
+    }
+
+    public double getTax(double subtotal) {
+        DecimalFormat formatter = new DecimalFormat("#.##");
+        return Double.parseDouble(formatter.format(subtotal * 0.13));
+    }
+
+    public double getTotal(double subtotal, double tax) {
+        return subtotal + tax;
+    }
+
+    public String checkout() {
+        if (this.items.isEmpty()) {
+            throw new IllegalStateException();
+        }
+        return "\tRECEIPT\n\n" +
+                "\tSubtotal: $" + getSubtotal() + "\n" +
+                "\tTax: $" + getTax(getSubtotal()) + "\n" +
+                "\tTotal: $" + getTotal(getSubtotal(), getTax(getSubtotal())) + "\n";
+    }
+
+    public void clear() {
+        this.items.clear();
+    }
     
     public String toString() {
         String temp = "";

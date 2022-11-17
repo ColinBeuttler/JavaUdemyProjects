@@ -1,6 +1,7 @@
 package src.main.models;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class Store {
     ArrayList<Movie> movies;
@@ -15,6 +16,38 @@ public class Store {
 
     public void setMovie(int index, Movie movie) {
         this.movies.set(index, new Movie(movie));
+    }
+
+    public void addMovie(Movie movie) {
+        this.movies.add(new Movie(movie));
+    }
+
+    public void sellMovie(String name) {
+        if (!(this.movies.get(getMovieInt(name)).isAvailable())) {
+            throw new IllegalStateException();
+        }
+        this.movies.removeIf((movie) -> movie.getName().equals(name));
+    }
+    
+    public int getMovieInt(String name){
+       return IntStream.range(0, this.movies.size())
+        .filter((i) -> this.movies.get(i).getName().equals(name))
+            .findFirst()
+                .orElse(-1000);
+                
+    }
+
+    public void rentMovie(String name) {
+            this.movies.get(getMovieInt(name)).setAvailable(false);
+        
+    }
+
+    public boolean contains(Movie movie) {
+        return this.movies.contains(movie);
+    }
+
+    public void returnMovie(String name) {
+        this.movies.get(getMovieInt(name)).setAvailable(true);
     }
 
     public String toString() {

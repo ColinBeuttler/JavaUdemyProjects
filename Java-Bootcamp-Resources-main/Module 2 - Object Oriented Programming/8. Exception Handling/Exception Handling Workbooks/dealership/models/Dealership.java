@@ -15,23 +15,39 @@ public class Dealership {
     }
 
     public Car getCar(int index) {
-        return new Car(this.cars[index]);
+        return this.cars[index] == null ? null : new Car(this.cars[index]);
+    }
+
+    public int getLength() {
+        return cars.length;
     }
 
     
-    public void sell(int index) {  
+    public void sell(int index) {
+        if (this.isEmpty()) {
+            throw new IllegalStateException("Cannot sell if Dealership is empty.");
+        }
         this.cars[index].drive();
         this.cars[index] = null;
     }
 
     /**
-     * Name: isEmpty
+     * Name: isEmpty 
      *
      * @return (boolean)
      * Inside the function:
      *   • returns true if there are no more cars.
      * 
      */
+
+    public boolean isEmpty() {
+        for (int i = 0; i < cars.length; i++) {
+            if (cars[i] != null) {
+            return false;
+        }
+        }
+        return true;
+     }
 
      
     public String toString() {

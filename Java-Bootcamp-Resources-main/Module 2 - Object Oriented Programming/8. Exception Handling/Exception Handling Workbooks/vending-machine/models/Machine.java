@@ -10,6 +10,14 @@ public class Machine {
             }
         }
     }
+
+    public int getLength() {
+        return items.length;
+    }
+
+    public int getRowLength() {
+        return items[0].length;
+    }
     
     public Item getItem(int row, int spot) {
         return new Item(this.items[row][spot]);
@@ -20,6 +28,9 @@ public class Machine {
     }
 
     public void dispense(int row, int spot) {
+        if (items[row][spot].getQuantity() == 0) {
+            throw new IllegalArgumentException("Drink out of stock");
+        }
         items[row][spot].setQuantity(items[row][spot].getQuantity() - 1);
     }
 

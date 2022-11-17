@@ -1,11 +1,12 @@
 public class Employee {
     private String name;
     private String position;
-    static int hiredCount; 
+    private static int hiredCount; 
 
     public Employee(String name, String position) {
         this.name = name;
         this.position = position;
+        hiredCount++;
     }
   
     public Employee(Employee source) {
@@ -25,6 +26,10 @@ public class Employee {
         if (company.equals("JAVASTARS")) {
             System.out.println("Welcome!");
         }
+    }
+
+    public static int getHiredCount() {
+        return hiredCount;
     }
 
 

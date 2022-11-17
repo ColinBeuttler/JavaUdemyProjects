@@ -7,14 +7,17 @@ public class Transpose {
             {4, 5, 6},
             {7, 8, 9}
         };
+
+        int[][] matrix2 = new int[3][3];
+
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = matrix[j][i];
+                matrix2[i][j] = matrix[j][i];
             }
         }
 
         System.out.println();
-        printMatrix(matrix);
+        printMatrix(matrix2);
     }
     public static void printMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {

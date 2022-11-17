@@ -5,6 +5,12 @@ public class Car {
     private double price;
 
     public Car(String make, double price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Car's price cannot be less than 0.");
+        }
+        if (make == null || make.isBlank()) {
+            throw new IllegalArgumentException("make cannot be null/blank");
+        }
         this.make = make;
         this.price = price;
     }
@@ -18,10 +24,16 @@ public class Car {
     }
 
     public double getPrice() {
+        if (price < 0) {
+            throw new IllegalArgumentException("Car's price cannot be less than 0.");
+        }
         return this.price;
     }
 
     public void setMake(String make) {
+        if (make == null || make.isBlank()) {
+            throw new IllegalArgumentException("make cannot be null/blank");
+        }
         this.make = make;
     }
 

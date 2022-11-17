@@ -1,13 +1,21 @@
 package src.main;
+
 import src.main.models.Game;
+import src.main.models.Team;
 
 public class Main {
 
-    static Game game;
+   static Game game;
+   static final String TEAMS_FILE = "src/main/teams.txt";
+   static final String PLAYS_FILE = "src/main/plays.txt";
 
     public static void main(String[] args) {
 
-        
+      new Game(
+  new Team(data[0][0], data[0][1], data[0][2], new String[] {data[0][3], data[0][4], data[0][5]}),
+  new Team(data[1][0], data[1][1], data[1][2], new String[] {data[1][3], data[1][4], data[1][5]})
+);
+ 
     }
 
 
@@ -19,6 +27,9 @@ public class Main {
      * Inside the function:
      *   1. Returns data from TEAMS_FILE as a String[][] array
      */
+    public String[][] getData() {
+      
+    }
 
 
     /** Function name: startGame
