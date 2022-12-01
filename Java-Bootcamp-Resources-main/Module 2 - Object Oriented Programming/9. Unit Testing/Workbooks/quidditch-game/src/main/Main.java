@@ -1,11 +1,10 @@
 package src.main;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
-import javax.sound.sampled.Line;
 
 import src.main.models.Game;
 import src.main.models.Team;
@@ -25,6 +24,7 @@ public class Main {
           new Team(data[1][0], data[1][1], data[1][2], new String[] { data[1][3], data[1][4], data[1][5] }));
       startGame();
       printResult();
+      
     } catch (FileNotFoundException e) {
       System.out.println(e.getMessage());
     }
@@ -65,6 +65,7 @@ public class Main {
     Scanner scanFile = new Scanner(fis);
     while (scanFile.hasNextLine()) {
       String result = game.simulate(scanFile.nextLine());
+      wait(3);
       System.out.println("\n" + result + "\n");
     }
     scanFile.close();
@@ -96,5 +97,16 @@ public class Main {
    *            Inside the function:
    *            1. Make the code sleep for X seconds.
    */
+
+  public static void wait(int sec) {
+    try{
+      TimeUnit.SECONDS.sleep(sec);
+    }
+
+    catch (InterruptedException e) {
+      System.out.println(e.getMessage());
+    }
+    
+}
 
 }
