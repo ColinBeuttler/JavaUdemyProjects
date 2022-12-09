@@ -34,8 +34,8 @@ public class Bank {
             .orElse(null);
     }
 
-    public void addAccount(Account account) {
-        this.accounts.add(account.clone());
+    public void addAccount(ArrayList<Account> accounts2) {
+        this.accounts.add(accounts.clone());
     }
 
     private void addTransaction(Transaction transaction) {
