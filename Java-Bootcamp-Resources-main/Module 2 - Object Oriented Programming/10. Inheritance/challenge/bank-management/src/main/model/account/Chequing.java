@@ -1,7 +1,9 @@
 package src.main.model.account;
 
 
-public class Chequing extends Account{
+import src.main.model.account.impl.Taxable;
+
+public class Chequing extends Account implements Taxable{
     
     private static final double OVERDRAFT_FEE = 5.5;
     private static final double OVERDRAFT_LIMIT = 200;
@@ -20,8 +22,7 @@ public class Chequing extends Account{
 
     @Override
     public void deposit(double amount) {
-        // TODO Auto-generated method stub
-        
+        super.setBalance(super.round(super.getBalance() + amount));
     }
 
     @Override
@@ -35,14 +36,18 @@ public class Chequing extends Account{
         else {
             super.setBalance(super.round(super.getBalance() - amount));
         }
-        // TODO Auto-generated method stub
         return true;
     }
 
     @Override
     public Account clone() {
-        // TODO Auto-generated method stub
-        return null;
+        return new Chequing(this);
+    }
+
+    @Override
+    public void tax(double income) {
+        double tax = Math.max(0, super.getBalance() - TAXABLE_INCOME) * TAX_RATE;
+        super.setBalance(Math.round(super.getBalance()- tax));
     }
 
 }

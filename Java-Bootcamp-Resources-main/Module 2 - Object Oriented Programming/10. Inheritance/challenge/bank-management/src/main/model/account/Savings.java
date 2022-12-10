@@ -18,19 +18,21 @@ public class Savings extends Account{
     @Override
     public void deposit(double amount) {
         // TODO Auto-generated method stub
+        super.setBalance(super.round(super.getBalance() + amount));
         
     }
 
     @Override
     public boolean withdraw(double amount) {
         // TODO Auto-generated method stub
-        return false;
+        super.setBalance(super.round(super.getBalance() - amount - WITHDRAWAL_FEE));
+        return true;
     }
 
     @Override
     public Account clone() {
         // TODO Auto-generated method stub
-        return null;
+        return new Savings(this);
     }
 
 }
