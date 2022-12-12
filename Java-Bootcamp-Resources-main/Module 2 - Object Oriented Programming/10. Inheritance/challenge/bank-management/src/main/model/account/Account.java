@@ -1,11 +1,17 @@
 package src.main.model.account;
 
+import java.text.DecimalFormat;
+
 public abstract class Account {
+
     private String id;
     private String name;
     private double balance;
 
     public Account(String id, String name, double balance) {
+        if (id == null || id.isBlank() || name == null || name.isBlank()) {
+            throw new IllegalArgumentException("INVALID PARAMS");
+        }
         this.id = id;
         this.name = name;
         this.balance = balance;
@@ -41,11 +47,24 @@ public abstract class Account {
         this.balance = balance;
     }
 
+    protected double round(double amount) {
+        DecimalFormat formatter = new DecimalFormat("#.##");
+        return Double.parseDouble(formatter.format(amount));
+    }
+
+    public abstract void deposit(double amount);
+
+    public abstract boolean withdraw(double amount);
+
+    public abstract Account clone();
+
     @Override
     public String toString() {
-        return " id='" + getId() + "\n" +
-                ", name='" + getName() + "\n" +
-                ", balance='" + getBalance() + "\n";
+        return (this.getClass().getSimpleName()) +
+                " \tid='" + getId() + "'" +
+                ", \tname='" + getName() + "'" +
+                ", \tbalance='" + getBalance() + "'" +
+                "}";
     }
 
 }

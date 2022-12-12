@@ -106,5 +106,8 @@ public class Transaction implements Comparable<Transaction> {
             "\t$" + this.getAmount() + "";
     }
 
+    public void withdrawTransaction() {
+    }
+
     
 }

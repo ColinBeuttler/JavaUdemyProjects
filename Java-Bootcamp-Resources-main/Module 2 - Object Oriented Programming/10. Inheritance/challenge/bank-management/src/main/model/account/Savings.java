@@ -2,7 +2,7 @@ package src.main.model.account;
 
 public class Savings extends Account {
 
-    private static final double WITHDRAWAL_FEE = 0.05;
+    private static final double WITHDRAWAL_FEE = 5.00;
 
     public Savings(String id, String name, double balance) {
         super(id, name, balance);
@@ -15,19 +15,21 @@ public class Savings extends Account {
     @Override
     public void deposit(double amount) {
         // TODO Auto-generated method stub
+        super.setBalance(super.round(super.getBalance() + amount));
 
     }
 
     @Override
     public boolean withdraw(double amount) {
         // TODO Auto-generated method stub
-        return false;
+        super.setBalance(super.round(super.getBalance() - amount - WITHDRAWAL_FEE));
+        return true;
     }
 
     @Override
     public Account clone() {
         // TODO Auto-generated method stub
-        return null;
+        return new Savings(this);
     }
 
 }

@@ -15,20 +15,22 @@ public class Loan extends Account {
 
     @Override
     public void deposit(double amount) {
-        // TODO Auto-generated method stub
+        super.setBalance(super.round(super.getBalance() - amount));
 
     }
 
     @Override
     public boolean withdraw(double amount) {
-        // TODO Auto-generated method stub
-        return false;
+        if (super.getBalance() + amount > MAX_DEBT) {
+            return false;
+        }
+        super.setBalance(super.round(super.getBalance() + amount + (amount * INTEREST_RATE)));
+        return true;
     }
 
     @Override
     public Account clone() {
-        // TODO Auto-generated method stub
-        return null;
+        return new Loan(this);
     }
 
 }

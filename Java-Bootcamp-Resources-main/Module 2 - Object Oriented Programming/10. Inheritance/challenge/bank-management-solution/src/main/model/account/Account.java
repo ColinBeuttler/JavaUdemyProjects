@@ -1,6 +1,7 @@
 package src.main.model.account;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 public abstract class Account {
